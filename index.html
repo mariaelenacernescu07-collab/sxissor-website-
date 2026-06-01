@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SXISSOR App | Coming Soon</title>
+
+  <title>SXISSOR | No Games. Start SXISSORING.</title>
 
   <style>
     * {
@@ -12,33 +13,47 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #050505;
-      color: white;
+      background: #030303;
+      color: #ffffff;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      width: min(1150px, 92%);
-      margin: auto;
+      width: min(1160px, 92%);
+      margin: 0 auto;
+    }
+
+    .red {
+      color: #d40000;
+    }
+
+    .muted {
+      color: #9b9b9b;
     }
 
     header {
-      padding: 24px 0;
-      border-bottom: 1px solid #1f1f1f;
-      background: #050505;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 50;
+      background: rgba(3, 3, 3, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .nav {
+      min-height: 78px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -50,183 +65,382 @@
       letter-spacing: 2px;
     }
 
-    .logo span {
-      color: #e50914;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
-    .nav a {
-      color: #ccc;
-      margin-left: 24px;
-      font-size: 14px;
-      font-weight: bold;
+    .nav-links a {
+      color: #bdbdbd;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      transition: 0.2s ease;
     }
 
-    .nav a:hover {
-      color: white;
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-cta {
+      padding: 11px 17px;
+      border-radius: 999px;
+      background: #b00000;
+      color: #ffffff !important;
     }
 
     .hero {
-      padding: 90px 0;
+      min-height: calc(100vh - 78px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
       background:
-        radial-gradient(circle at top right, rgba(229, 9, 20, 0.25), transparent 35%),
-        radial-gradient(circle at bottom left, rgba(229, 9, 20, 0.15), transparent 35%);
+        radial-gradient(circle at 20% 15%, rgba(180, 0, 0, 0.28), transparent 28%),
+        radial-gradient(circle at 85% 35%, rgba(180, 0, 0, 0.17), transparent 30%),
+        linear-gradient(180deg, #050505 0%, #000000 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+      pointer-events: none;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 2;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 50px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
       align-items: center;
+      padding: 86px 0;
     }
 
-    .tag {
-      color: #ff4d4d;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 3px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      color: #ff4a4a;
+      border: 1px solid rgba(212, 0, 0, 0.45);
+      background: rgba(130, 0, 0, 0.18);
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     h1 {
-      font-size: clamp(44px, 8vw, 82px);
-      line-height: 0.95;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.92;
+      letter-spacing: -4px;
       margin-bottom: 26px;
-      letter-spacing: -2px;
+      max-width: 760px;
     }
 
-    .hero p {
+    .hero-lead {
       color: #b7b7b7;
-      font-size: 18px;
-      max-width: 620px;
-      margin-bottom: 32px;
+      font-size: clamp(17px, 2vw, 21px);
+      max-width: 650px;
+      margin-bottom: 34px;
     }
 
     .buttons {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .btn {
-      padding: 15px 24px;
-      border-radius: 12px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 23px;
+      border-radius: 15px;
+      font-size: 14px;
       font-weight: 900;
-      display: inline-block;
-      transition: 0.2s;
+      letter-spacing: 0.2px;
+      transition: 0.2s ease;
     }
 
-    .btn-red {
-      background: #e50914;
-      color: white;
+    .btn-primary {
+      background: #b00000;
+      color: #ffffff;
+      box-shadow: 0 18px 45px rgba(176, 0, 0, 0.25);
     }
 
-    .btn-red:hover {
-      background: #ff1b27;
+    .btn-primary:hover {
+      background: #d40000;
       transform: translateY(-2px);
     }
 
-    .btn-dark {
-      background: #111;
-      border: 1px solid #333;
-      color: white;
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
     }
 
-    .btn-dark:hover {
-      border-color: #e50914;
+    .btn-secondary:hover {
+      border-color: rgba(212, 0, 0, 0.8);
       transform: translateY(-2px);
+    }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+      max-width: 660px;
+    }
+
+    .note {
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .note strong {
+      display: block;
+      font-size: 21px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .note span {
+      color: #9d9d9d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .phone-wrap {
+      display: flex;
+      justify-content: flex-end;
     }
 
     .phone {
-      background: linear-gradient(180deg, #191919, #070707);
-      border: 1px solid #333;
-      border-radius: 38px;
-      padding: 22px;
-      max-width: 360px;
-      margin-left: auto;
-      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.65);
+      width: min(390px, 100%);
+      background: linear-gradient(180deg, #181818, #050505);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 42px;
+      padding: 16px;
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.75),
+        0 0 80px rgba(150, 0, 0, 0.16);
     }
 
     .screen {
-      background: #000;
-      border: 1px solid #333;
-      border-radius: 30px;
-      min-height: 620px;
-      padding: 24px;
-      position: relative;
+      min-height: 690px;
+      border-radius: 32px;
+      background: #000000;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 22px;
       overflow: hidden;
+      position: relative;
+    }
+
+    .screen-top {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
     }
 
     .phone-logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .app-sub {
       text-align: center;
-      font-size: 26px;
-      font-weight: 900;
-      margin-bottom: 32px;
+      color: #6f6f6f;
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: -15px;
+      margin-bottom: 28px;
     }
 
-    .profile {
-      background: #111;
-      border: 1px solid #2b2b2b;
-      border-radius: 24px;
-      padding: 14px;
-      margin-bottom: 16px;
-    }
-
-    .photo {
-      height: 250px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #751212, #191919);
+    .app-row {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      font-size: 88px;
-      font-weight: 900;
       margin-bottom: 14px;
     }
 
-    .profile h3 {
-      font-size: 22px;
+    .app-title {
+      font-size: 21px;
+      font-weight: 900;
     }
 
-    .profile p {
-      color: #aaa;
-      font-size: 14px;
+    .map-pill {
+      background: #b00000;
+      color: white;
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 900;
     }
 
-    .tick {
-      color: #2ecc71;
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-bottom: 18px;
+    }
+
+    .mini-action {
+      background: #111111;
+      border: 1px solid #2c2c2c;
+      border-radius: 17px;
+      padding: 14px;
+    }
+
+    .mini-action strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    .mini-action span {
+      color: #8b8b8b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .profile-card {
+      background: #101010;
+      border: 1px solid #282828;
+      border-radius: 24px;
+      padding: 12px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .profile-img {
+      height: 280px;
+      border-radius: 19px;
+      background:
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.55)),
+        linear-gradient(135deg, #7a1515, #1b1b1b);
+      display: flex;
+      align-items: flex-end;
+      padding: 18px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .profile-img::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.18), transparent 24%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,0.08), transparent 22%);
+    }
+
+    .profile-info {
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-info h3 {
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .profile-info p {
+      color: #d5d5d5;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .online {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #2ecc71;
+      border: 2px solid #000;
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      z-index: 3;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      margin-top: 10px;
+      border: 1px solid #b00000;
+      background: rgba(176, 0, 0, 0.16);
+      color: #ffb5b5;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
     }
 
     .bottom-nav {
       position: absolute;
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-      background: #121212;
-      border: 1px solid #333;
-      border-radius: 26px;
-      padding: 16px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      height: 58px;
+      border-radius: 999px;
+      background: rgba(10, 10, 10, 0.95);
+      border: 1px solid #252525;
       display: flex;
       justify-content: space-around;
+      align-items: center;
       font-weight: 900;
+      font-size: 13px;
+    }
+
+    .active-tab {
+      background: #b00000;
+      padding: 10px 18px;
+      border-radius: 999px;
     }
 
     section {
-      padding: 80px 0;
+      padding: 92px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .section-kicker {
+      color: #ff4a4a;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: clamp(32px, 5vw, 52px);
-      text-align: center;
-      margin-bottom: 14px;
-      line-height: 1.1;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
     }
 
     .section-subtitle {
-      color: #b7b7b7;
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 48px;
+      color: #a9a9a9;
+      max-width: 760px;
+      margin: 0 auto;
       font-size: 17px;
     }
 
@@ -237,125 +451,210 @@
     }
 
     .card {
-      background: #111;
-      border: 1px solid #2b2b2b;
-      border-radius: 24px;
+      min-height: 255px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
       padding: 28px;
-      min-height: 220px;
+      transition: 0.2s ease;
     }
 
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: rgba(229, 9, 20, 0.15);
-      border: 1px solid #e50914;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      margin-bottom: 18px;
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212,0,0,0.6);
+    }
+
+    .card-number {
+      color: #d40000;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 26px;
     }
 
     .card h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
+      font-size: 25px;
+      line-height: 1.1;
+      margin-bottom: 12px;
     }
 
     .card p {
-      color: #aaa;
+      color: #a8a8a8;
+      font-size: 15px;
     }
 
     .dark-section {
-      background: #090909;
-      border-top: 1px solid #191919;
-      border-bottom: 1px solid #191919;
+      background:
+        radial-gradient(circle at top left, rgba(176,0,0,0.12), transparent 30%),
+        #070707;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 35px;
-      align-items: center;
+      gap: 28px;
+      align-items: stretch;
     }
 
     .panel {
-      background: #111;
-      border: 1px solid #2b2b2b;
-      border-radius: 28px;
+      background: #101010;
+      border: 1px solid #292929;
+      border-radius: 30px;
       padding: 34px;
     }
 
     .panel h2 {
-      font-size: 38px;
-      line-height: 1.1;
-      margin-bottom: 18px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -1.5px;
     }
 
     .panel p {
-      color: #aaa;
-      margin-bottom: 18px;
+      color: #a8a8a8;
+      margin-bottom: 20px;
     }
 
-    ul {
+    .list {
       list-style: none;
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
-    li {
-      padding: 12px 0;
-      border-bottom: 1px solid #222;
-      color: #ddd;
+    .list li {
+      color: #dddddd;
+      padding: 14px 0;
+      border-bottom: 1px solid #222222;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
     }
 
-    li::before {
-      content: "✓";
-      color: #2ecc71;
-      margin-right: 10px;
-      font-weight: bold;
+    .list li::before {
+      content: "";
+      margin-top: 8px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d40000;
+      flex: 0 0 7px;
+    }
+
+    .slogan-band {
+      padding: 70px 0;
+      background: #000000;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .slogan-band h2 {
+      font-size: clamp(38px, 7vw, 84px);
+      line-height: 0.92;
+      letter-spacing: -3px;
+    }
+
+    .premium-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .premium-card {
+      background:
+        linear-gradient(135deg, rgba(176,0,0,0.22), rgba(255,255,255,0.04));
+      border: 1px solid rgba(212,0,0,0.35);
+      border-radius: 30px;
+      padding: 34px;
+    }
+
+    .premium-card h2 {
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .premium-card p {
+      color: #c0c0c0;
+    }
+
+    .premium-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .premium-item {
+      background: #101010;
+      border: 1px solid #2b2b2b;
+      border-radius: 19px;
+      padding: 18px;
+    }
+
+    .premium-item strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .premium-item span {
+      color: #9d9d9d;
+      font-size: 14px;
     }
 
     .cta {
       text-align: center;
-      background: linear-gradient(135deg, #160000, #050505);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(176,0,0,0.22), transparent 34%),
+        linear-gradient(180deg, #060606, #000000);
     }
 
     .cta h2 {
-      font-size: clamp(36px, 5vw, 58px);
-      margin-bottom: 16px;
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 0.95;
+      letter-spacing: -2.5px;
+      margin-bottom: 18px;
     }
 
     .cta p {
-      color: #b7b7b7;
-      max-width: 700px;
+      color: #a9a9a9;
+      max-width: 720px;
       margin: 0 auto 30px;
+      font-size: 17px;
     }
 
     footer {
-      padding: 28px 0;
-      border-top: 1px solid #1f1f1f;
-      color: #888;
+      padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #777777;
       font-size: 14px;
     }
 
     .footer-row {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
       .hero-grid,
-      .split {
+      .split,
+      .premium-grid {
         grid-template-columns: 1fr;
       }
 
-      .phone {
-        margin: 40px auto 0;
+      .phone-wrap {
+        justify-content: center;
       }
 
       .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-notes {
         grid-template-columns: 1fr;
       }
 
@@ -363,8 +662,35 @@
         display: none;
       }
 
-      .hero {
-        padding: 60px 0;
+      h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .hero-grid {
+        padding: 58px 0;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .screen {
+        min-height: 640px;
+        padding: 18px;
+      }
+
+      .profile-img {
+        height: 250px;
+      }
+
+      .bottom-nav {
+        font-size: 11px;
+      }
+
+      .active-tab {
+        padding: 9px 14px;
       }
     }
   </style>
@@ -373,13 +699,14 @@
 <body>
   <header>
     <div class="container nav">
-      <div class="logo">SX<span>I</span>SSOR</div>
+      <a href="#" class="logo">SX<span class="red">I</span>SSOR</a>
 
       <nav class="nav-links">
+        <a href="#how">How it works</a>
         <a href="#features">Features</a>
-        <a href="#community">Community</a>
         <a href="#safety">Safety</a>
-        <a href="#waitlist">Waitlist</a>
+        <a href="#premium">Premium</a>
+        <a href="#waitlist" class="nav-cta">Join waitlist</a>
       </nav>
     </div>
   </header>
@@ -388,154 +715,294 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="tag">A modern dating app in development</div>
+          <div class="eyebrow">Dating with intention</div>
 
-          <h1>Find your people. Feel safe. Start real conversations.</h1>
+          <h1>No games. Start SXISSORING.</h1>
 
-          <p>
-            SXISSOR is a new dating app concept built for matching, messaging,
-            nearby discovery, profile verification, safety tools and community advice.
+          <p class="hero-lead">
+            SXISSOR is a dating app built around clear intentions, mutual interest,
+            safer discovery, and conversations that do not disappear into endless ghosting.
           </p>
 
           <div class="buttons">
-            <a href="#waitlist" class="btn btn-red">Join Waitlist</a>
-            <a href="#features" class="btn btn-dark">See Features</a>
+            <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
+            <a href="#how" class="btn btn-secondary">Explore the concept</a>
+          </div>
+
+          <div class="hero-notes">
+            <div class="note">
+              <strong>Real</strong>
+              <span>Profiles, photos and messages.</span>
+            </div>
+
+            <div class="note">
+              <strong>Clear</strong>
+              <span>Dating intentions upfront.</span>
+            </div>
+
+            <div class="note">
+              <strong>Safer</strong>
+              <span>Blocking, reporting and verification.</span>
+            </div>
           </div>
         </div>
 
-        <div class="phone">
-          <div class="screen">
-            <div class="phone-logo">SX<span style="color:#e50914;"> I </span>SSOR</div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="screen">
+              <div class="screen-top">
+                <div class="phone-logo">SX<span class="red"> I </span>SSOR</div>
+              </div>
 
-            <div class="profile">
-              <div class="photo">S</div>
-              <h3>Sofia, 22 <span class="tick">✓</span></h3>
-              <p>Active now • 4 miles away</p>
-            </div>
+              <div class="app-sub">No games. Clear intentions.</div>
 
-            <div class="profile">
-              <div class="photo" style="background:linear-gradient(135deg,#1b4f6d,#191919);">M</div>
-              <h3>Maya, 24</h3>
-              <p>Coffee, gym, travelling</p>
-            </div>
+              <div class="app-row">
+                <div>
+                  <div class="app-title">People near you</div>
+                  <div class="muted" style="font-size:13px;">Browse real connections</div>
+                </div>
 
-            <div class="bottom-nav">
-              <span>SXISSOR</span>
-              <span>📍</span>
-              <span>💬</span>
-              <span>⚙️</span>
+                <div class="map-pill">Map</div>
+              </div>
+
+              <div class="action-grid">
+                <div class="mini-action">
+                  <strong>Filters</strong>
+                  <span>Default filters</span>
+                </div>
+
+                <div class="mini-action">
+                  <strong>Waves</strong>
+                  <span>See interest</span>
+                </div>
+              </div>
+
+              <div class="profile-card">
+                <div class="profile-img">
+                  <div class="online"></div>
+
+                  <div class="profile-info">
+                    <h3>Bonita, 18</h3>
+                    <p>Nearby · Active now</p>
+                    <span class="tag-pill">Not sure yet</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-card">
+                <div
+                  class="profile-img"
+                  style="height: 150px; background: linear-gradient(135deg, #1b4f6d, #151515);"
+                >
+                  <div class="profile-info">
+                    <h3>Elena, 27</h3>
+                    <p>Waved at you</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottom-nav">
+                <span class="active-tab">SXISSOR</span>
+                <span>Map</span>
+                <span>Chat</span>
+                <span>Settings</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="features">
+    <section id="how">
       <div class="container">
-        <h2 class="section-title">Everything a dating app needs</h2>
-        <p class="section-subtitle">
-          SXISSOR is being designed with clean profiles, simple navigation, safety features,
-          real-time messaging and community tools.
-        </p>
+        <div class="section-head">
+          <div class="section-kicker">The flow</div>
+
+          <h2 class="section-title">Designed to make interest clearer.</h2>
+
+          <p class="section-subtitle">
+            SXISSOR keeps the experience simple: discover, wave, match, and talk.
+            The goal is to make dating feel less random and more intentional.
+          </p>
+        </div>
 
         <div class="cards">
           <div class="card">
-            <div class="icon">👋</div>
-            <h3>Waves & Matches</h3>
-            <p>Send waves, match with people who like you back, and start chatting when interest is mutual.</p>
+            <div class="card-number">01</div>
+            <h3>Discover real profiles</h3>
+            <p>
+              Browse people nearby with profile photos, age, dating intention,
+              reply style and basic profile details.
+            </p>
           </div>
 
           <div class="card">
-            <div class="icon">📍</div>
-            <h3>Nearby Map</h3>
-            <p>Discover people nearby with a simple map-style experience that feels natural on mobile.</p>
+            <div class="card-number">02</div>
+            <h3>Send a wave</h3>
+            <p>
+              A wave is a low-pressure way to show interest before starting
+              a full conversation.
+            </p>
           </div>
 
           <div class="card">
-            <div class="icon">💬</div>
-            <h3>Chat</h3>
-            <p>Message matches, send voice-note style interactions, and prepare for future call features.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon">✅</div>
-            <h3>Verified Profiles</h3>
-            <p>Verification helps users feel more confident when connecting with new people.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon">🌍</div>
-            <h3>Community</h3>
-            <p>Ask questions, vote on posts, read comments and get advice from other users.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon">⭐</div>
-            <h3>Premium</h3>
-            <p>Future premium features may include profile visibility, who viewed you and AI profile tips.</p>
+            <div class="card-number">03</div>
+            <h3>Match when interest is mutual</h3>
+            <p>
+              When both users wave at each other, SXISSOR opens the match flow
+              and starts the chat.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="community" class="dark-section">
-      <div class="container split">
-        <div class="panel">
-          <h2>More than swiping.</h2>
-          <p>
-            SXISSOR is designed to help users connect, but also learn, ask questions
-            and feel supported through a community space.
-          </p>
+    <section id="features" class="dark-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Current app direction</div>
 
-          <ul>
-            <li>Ask dating and profile questions</li>
-            <li>Vote posts up or down</li>
-            <li>Read and write comments</li>
-            <li>Keep conversations respectful</li>
-          </ul>
+          <h2 class="section-title">What SXISSOR is built around.</h2>
+
+          <p class="section-subtitle">
+            The website now matches the app: real profiles, photos, waves,
+            messages, blocking, reporting, profile views and a Premium direction.
+          </p>
         </div>
 
-        <div class="panel">
-          <h2>Simple profile control.</h2>
-          <p>
-            Users can update their profile, connect phone and email, submit verification,
-            adjust filters and manage account settings.
-          </p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-number">DISCOVERY</div>
+            <h3>Home and nearby map</h3>
+            <p>
+              Users can browse profiles in a clean Home feed or open the
+              map-style view without showing exact locations.
+            </p>
+          </div>
 
-          <ul>
-            <li>Edit profile anytime</li>
-            <li>Add account verification</li>
-            <li>Change language and appearance</li>
-            <li>Manage blocked users</li>
-          </ul>
+          <div class="card">
+            <div class="card-number">INTEREST</div>
+            <h3>Waves and matches</h3>
+            <p>
+              Waves show interest without pressure. Mutual waves create a match
+              and open the conversation flow.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">CHAT</div>
+            <h3>Messages and voice notes</h3>
+            <p>
+              Matches can message inside the app, with voice notes planned as a
+              more personal way to communicate.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">PROFILE</div>
+            <h3>Photo-led profiles</h3>
+            <p>
+              Users can add profile photos, edit their bio, show intentions and
+              control how their profile appears.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">VIEWS</div>
+            <h3>Who viewed you</h3>
+            <p>
+              Profile views help users understand who is interested, with a strong
+              future Premium use case.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">CONTROL</div>
+            <h3>Settings that matter</h3>
+            <p>
+              Filters, blocked users, verification, account information and
+              safety tools sit in one simple place.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="safety">
+      <div class="container split">
+        <div class="panel">
+          <h2>Safety should feel built in, not added later.</h2>
+
+          <p>
+            SXISSOR is being shaped around user control. People should be able
+            to block, report, verify, and manage their own experience without
+            confusion.
+          </p>
+
+          <ul class="list">
+            <li>Block users and remove them from discovery.</li>
+            <li>Report unsafe, fake or inappropriate behaviour.</li>
+            <li>Review blocked users from settings.</li>
+            <li>Use verification to support trust.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h2>Location without exposing exact location.</h2>
+
+          <p>
+            The nearby map is designed as a visual discovery tool. The intention
+            is to keep location approximate, not expose someone’s exact position.
+          </p>
+
+          <ul class="list">
+            <li>Nearby discovery without exact pins.</li>
+            <li>Distance-based browsing.</li>
+            <li>Filters for better control.</li>
+            <li>Privacy-first map direction.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slogan-band">
       <div class="container">
-        <h2 class="section-title">Built with safety in mind</h2>
-        <p class="section-subtitle">
-          Safety is a core part of the SXISSOR idea, with account controls and tools to help users protect themselves.
-        </p>
+        <h2>No games.<br><span class="red">Start SXISSORING.</span></h2>
+      </div>
+    </section>
 
-        <div class="cards">
-          <div class="card">
-            <div class="icon">🛡️</div>
-            <h3>Report</h3>
-            <p>Report unsafe, fake or inappropriate behaviour directly from profiles.</p>
+    <section id="premium">
+      <div class="container premium-grid">
+        <div class="premium-card">
+          <div class="section-kicker">Premium direction</div>
+
+          <h2>Premium should feel useful, not gimmicky.</h2>
+
+          <p>
+            SXISSOR Premium should focus on features people immediately understand:
+            visibility, profile views, privacy, read receipts and stronger chat protection.
+          </p>
+        </div>
+
+        <div class="premium-list">
+          <div class="premium-item">
+            <strong>Who viewed you</strong>
+            <span>See profile interest more clearly.</span>
           </div>
 
-          <div class="card">
-            <div class="icon">🚫</div>
-            <h3>Block</h3>
-            <p>Block users and control who can interact with you in the app.</p>
+          <div class="premium-item">
+            <strong>Read receipts</strong>
+            <span>Know when a message has been read.</span>
           </div>
 
-          <div class="card">
-            <div class="icon">🔐</div>
-            <h3>Secure Account</h3>
-            <p>Phone, email and verification support stronger account trust.</p>
+          <div class="premium-item">
+            <strong>Protected chat mode</strong>
+            <span>Extra privacy tools where supported.</span>
+          </div>
+
+          <div class="premium-item">
+            <strong>Profile boost</strong>
+            <span>Increase visibility without changing the core experience.</span>
           </div>
         </div>
       </div>
@@ -543,16 +1010,16 @@
 
     <section id="waitlist" class="cta">
       <div class="container">
-        <h2>SXISSOR is coming soon</h2>
+        <h2>Built for people who are tired of guessing.</h2>
 
         <p>
-          The app is currently in development. The next stage is connecting the mobile app
-          to Supabase for real profiles, photos, messages, waves and community posts.
+          SXISSOR is currently in development. The focus is a polished mobile dating
+          experience with real profiles, safer messaging, waves, matches and clear intentions.
         </p>
 
         <div class="buttons" style="justify-content:center;">
-          <a href="mailto:hello@sxissorapp.com" class="btn btn-red">Contact SXISSOR</a>
-          <a href="#" class="btn btn-dark">Back to Top</a>
+          <a href="mailto:hello@sxissorapp.com" class="btn btn-primary">Contact SXISSOR</a>
+          <a href="#" class="btn btn-secondary">Back to top</a>
         </div>
       </div>
     </section>
@@ -561,7 +1028,7 @@
   <footer>
     <div class="container footer-row">
       <p>© 2026 SXISSOR. All rights reserved.</p>
-      <p>Dating app concept currently in development.</p>
+      <p>No games. Start SXISSORING.</p>
     </div>
   </footer>
 </body>
