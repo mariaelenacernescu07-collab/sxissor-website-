@@ -1,99 +1,616 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="SXISSOR is a privacy-first dating and community app for women who date women.">
-  <meta name="theme-color" content="#050505">
-  <title>SXISSOR | Clear intentions</title>
-  <style>
-    :root { --black:#050505; --panel:#101010; --white:#f5f2ed; --muted:#9a938d; --red:#d00820; --line:rgba(255,255,255,.15); }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; }
-    body { overflow-x:hidden; background:var(--black); color:var(--white); font-family:Arial,Helvetica,sans-serif; line-height:1.5; }
-    a { color:inherit; text-decoration:none; }
-    .wrap { width:min(calc(100% - 32px),1160px); margin:auto; }
-    #intro { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; background:#030303; transition:opacity .5s,visibility .5s; }
-    #intro.done { opacity:0; visibility:hidden; pointer-events:none; }
-    .intro-copy { text-align:center; }
-    .intro-copy b { display:block; font-size:clamp(3.5rem,15vw,8rem); line-height:.86; letter-spacing:-.08em; text-transform:uppercase; animation:rise .6s ease both; }
-    .intro-copy b:nth-child(2) { color:var(--red); animation-delay:.25s; }
-    .intro-copy small { display:block; margin-top:24px; color:#aaa; font-weight:800; letter-spacing:.35em; animation:fade .5s .65s both; }
-    .skip { position:absolute; right:20px; bottom:calc(20px + env(safe-area-inset-bottom)); border:1px solid #555; background:#080808; color:white; padding:10px 14px; }
-    @keyframes rise { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:none; } }
-    @keyframes fade { from { opacity:0; } to { opacity:1; } }
-    header { position:fixed; top:0; z-index:50; width:100%; border-bottom:1px solid var(--line); background:rgba(5,5,5,.9); backdrop-filter:blur(16px); }
-    nav { height:72px; display:flex; align-items:center; justify-content:space-between; }
-    .brand { font-weight:900; letter-spacing:.27em; }
-    .brand i { color:var(--red); font-style:normal; }
-    .links { display:flex; gap:24px; align-items:center; }
-    .links a { color:#bbb; font-size:.68rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-    .links .join { border:1px solid #666; padding:10px 14px; color:white; }
-    .hero { position:relative; min-height:100svh; display:grid; align-items:center; padding:120px 0 70px; overflow:hidden; }
-    .hero:after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 75% 40%,rgba(190,0,35,.32),transparent 32%); pointer-events:none; }
-    .hero-grid { position:relative; z-index:2; display:grid; grid-template-columns:1.05fr .95fr; gap:55px; align-items:center; }
-    .eyebrow { color:#d9c6c8; font-size:.65rem; font-weight:900; letter-spacing:.24em; text-transform:uppercase; }
-    h1 { margin:22px 0; font-size:clamp(4rem,9vw,8rem); line-height:.84; letter-spacing:-.085em; text-transform:uppercase; }
-    h1 span { display:block; color:var(--red); }
-    .lead { max-width:580px; color:#c8c2bb; }
-    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
-    .button { display:inline-flex; min-height:50px; align-items:center; justify-content:center; padding:0 22px; border:1px solid white; background:white; color:#050505; font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
-    .button.alt { background:transparent; color:white; border-color:#555; }
-    .phone-wrap { display:grid; place-items:center; }
-    .phone { width:min(340px,88vw); padding:12px; border:1px solid #555; border-radius:42px; background:linear-gradient(145deg,#252525,#070707); box-shadow:0 40px 110px #000,0 0 70px rgba(180,0,30,.25); }
-    .screen { min-height:570px; padding:19px 15px; border:1px solid #292929; border-radius:32px; background:#000; }
-    .phone-logo { text-align:center; font-size:.82rem; font-weight:950; letter-spacing:.2em; }
-    .phone-logo i { color:var(--red); font-style:normal; }
-    .discover { margin:28px 0 14px; }
-    .discover small { display:block; color:#777; }
-    .profiles { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-    .profile { height:200px; display:flex; align-items:flex-end; padding:10px; border:1px solid #333; border-radius:15px; background:linear-gradient(155deg,#741824,#190106 70%,#080808); }
-    .profile:nth-child(even) { background:linear-gradient(155deg,#42102f,#150108 70%,#080808); }
-    .profile b { display:block; font-size:.72rem; }
-    .profile small { color:#aaa; font-size:.53rem; }
-    .tag { display:inline-block; margin-top:5px; padding:2px 6px; border:1px solid #a92b39; border-radius:20px; color:#ffadb5; font-size:.42rem; text-transform:uppercase; }
-    section { padding:95px 0; }
-    .section-head { max-width:760px; margin-bottom:42px; }
-    .section-head h2 { margin:15px 0; font-size:clamp(3rem,6vw,5.5rem); line-height:.9; letter-spacing:-.07em; text-transform:uppercase; }
-    .section-head p { color:var(--muted); }
-    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .card { min-height:270px; display:flex; flex-direction:column; justify-content:flex-end; padding:27px; border:1px solid var(--line); background:radial-gradient(circle at 85% 10%,rgba(190,0,30,.25),transparent 38%),var(--panel); }
-    .card strong { color:var(--red); font-size:.65rem; letter-spacing:.2em; }
-    .card h3 { margin:10px 0; font-size:1.3rem; text-transform:uppercase; }
-    .card p { color:#96908a; font-size:.82rem; }
-    .statement { border-block:1px solid var(--line); background:#090909; text-align:center; }
-    .statement h2 { max-width:950px; margin:auto; font-size:clamp(3.4rem,8vw,7rem); line-height:.84; letter-spacing:-.08em; text-transform:uppercase; }
-    .statement span { color:var(--red); }
-    footer { padding:32px 0; border-top:1px solid var(--line); color:#777; font-size:.62rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
-    @media(max-width:850px) { .links a:not(.join) { display:none; } .hero-grid { grid-template-columns:1fr; } .phone-wrap { margin-top:35px; } .grid { grid-template-columns:1fr; } }
-    @media(max-width:580px) { .hero { padding-top:108px; } h1 { font-size:clamp(4rem,20vw,5.8rem); } .actions .button { width:100%; } section { padding:75px 0; } }
-    @media(prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } #intro { display:none; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="SXISSOR is a private dating and community app for women who date women.">
+<meta name="theme-color" content="#050505">
+<title>SXISSOR | Dating, with intention</title>
+
+<style>
+:root{
+  --black:#050505;
+  --panel:#111;
+  --white:#fff;
+  --muted:#888;
+  --red:#c9001f;
+  --dark-red:#50000c;
+  --line:#292929;
+}
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+html{scroll-behavior:smooth}
+body{
+  overflow-x:hidden;
+  background:var(--black);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.5;
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(calc(100% - 36px),1160px);margin:auto}
+
+/* INTRO */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle,rgba(155,0,20,.25),transparent 45%),#050505;
+  transition:opacity .7s,visibility .7s;
+}
+#intro.done{opacity:0;visibility:hidden;pointer-events:none}
+.intro-line,.intro-brand{
+  display:none;
+  max-width:90vw;
+  text-align:center;
+  font-size:clamp(3rem,13vw,8rem);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-.06em;
+  text-transform:uppercase;
+  animation:rise .7s ease;
+}
+.intro-line.active,.intro-brand.active{display:block}
+.intro-line.red{color:var(--red)}
+.intro-brand{font-size:clamp(1.4rem,5vw,2.3rem);letter-spacing:.35em}
+.red{color:var(--red)}
+.skip{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  border:1px solid #444;
+  border-radius:30px;
+  padding:10px 15px;
+  background:#080808;
+  color:white;
+  font-weight:bold;
+}
+@keyframes rise{
+  from{opacity:0;transform:translateY(25px);filter:blur(8px)}
+  to{opacity:1;transform:none;filter:none}
+}
+
+/* NAVIGATION */
+header{
+  position:fixed;
+  inset:0 0 auto;
+  z-index:50;
+  border-bottom:1px solid var(--line);
+  background:rgba(5,5,5,.9);
+  backdrop-filter:blur(18px);
+}
+nav{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand{font-weight:900;letter-spacing:.28em}
+.links{display:flex;align-items:center;gap:25px}
+.links a,.menu-button{
+  color:#aaa;
+  font-size:.65rem;
+  font-weight:bold;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.join{
+  border:1px solid #555;
+  border-radius:30px;
+  padding:10px 15px;
+  color:white!important;
+}
+.menu-button{
+  display:none;
+  border:1px solid #444;
+  border-radius:30px;
+  padding:10px 14px;
+  background:transparent;
+  color:white;
+}
+.mobile-menu{
+  display:none;
+  border-top:1px solid var(--line);
+  padding:8px 18px 18px;
+  background:#080808;
+}
+.mobile-menu.open{display:grid}
+.mobile-menu a{
+  border-bottom:1px solid var(--line);
+  padding:15px 0;
+  font-size:.7rem;
+  font-weight:bold;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+/* HERO */
+.hero{
+  min-height:100svh;
+  display:grid;
+  align-items:center;
+  overflow:hidden;
+  padding:125px 0 80px;
+  background:
+    radial-gradient(circle at 85% 70%,rgba(130,0,20,.3),transparent 35%),
+    #050505;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:65px;
+  align-items:center;
+}
+.eyebrow{
+  color:#c4b8b8;
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.23em;
+  text-transform:uppercase;
+}
+h1{
+  max-width:760px;
+  margin:20px 0 25px;
+  font-size:clamp(4rem,9vw,8rem);
+  font-weight:900;
+  line-height:.86;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+}
+h1 span{display:block;color:var(--red)}
+.lead{max-width:570px;color:#bbb;font-size:1rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.button{
+  display:inline-flex;
+  min-height:52px;
+  align-items:center;
+  justify-content:center;
+  border:1px solid white;
+  border-radius:30px;
+  padding:0 22px;
+  background:white;
+  color:#050505;
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-align:center;
+  text-transform:uppercase;
+  transition:.25s;
+}
+.button:hover{transform:translateY(-2px)}
+.button.alt{border-color:#555;background:transparent;color:white}
+
+/* PHONE */
+.phone{
+  position:relative;
+  width:min(100%,370px);
+  margin:auto;
+  overflow:hidden;
+  border:1px solid #666;
+  border-radius:56px;
+  padding:14px;
+  background:linear-gradient(145deg,#333,#080808 25%);
+  box-shadow:0 45px 100px #000,0 0 75px rgba(155,0,20,.25);
+}
+.phone:before{
+  content:"";
+  position:absolute;
+  top:9px;
+  left:50%;
+  z-index:5;
+  width:105px;
+  height:27px;
+  border-radius:20px;
+  background:#020202;
+  transform:translateX(-50%);
+}
+.phone:after{
+  content:"";
+  position:absolute;
+  bottom:7px;
+  left:50%;
+  z-index:5;
+  width:100px;
+  height:4px;
+  border-radius:10px;
+  background:#ddd;
+  transform:translateX(-50%);
+  opacity:.7;
+}
+.screen{
+  position:relative;
+  min-height:650px;
+  overflow:hidden;
+  border:1px solid #222;
+  border-radius:43px;
+  padding:50px 12px 80px;
+  background:#000;
+}
+.app-head{text-align:center;margin-bottom:22px}
+.app-logo{font-size:1.13rem;font-weight:900;letter-spacing:.18em}
+.app-tagline{margin-top:3px;color:#666;font-size:.48rem;font-weight:bold}
+.discover{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.discover h3{font-size:1.25rem}
+.discover small{color:#777;font-size:.6rem}
+.refresh{
+  display:grid;
+  width:32px;
+  height:32px;
+  place-items:center;
+  border:1px solid #333;
+  border-radius:50%;
+  background:#111;
+}
+.quick-actions{display:grid;gap:6px;margin-bottom:10px}
+.quick{
+  display:grid;
+  grid-template-columns:22px 1fr auto;
+  align-items:center;
+  gap:7px;
+  border:1px solid #333;
+  border-radius:14px;
+  padding:8px 9px;
+  background:#111;
+}
+.quick.wave{border-color:#7c1111;background:#200000}
+.quick-icon{color:#ffb3b3;text-align:center}
+.quick b{display:block;font-size:.62rem}
+.quick small{display:block;color:#888;font-size:.47rem}
+.wave-count{
+  display:grid;
+  width:20px;
+  height:20px;
+  place-items:center;
+  border-radius:50%;
+  background:#9b0000;
+  font-size:.5rem;
+  font-weight:bold;
+}
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.profile{
+  position:relative;
+  aspect-ratio:.67;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  border:1px solid #292929;
+  border-radius:16px;
+  background:linear-gradient(155deg,#711521,#190307 65%,#080808);
+}
+.profile:nth-child(2){background:linear-gradient(155deg,#401030,#18030c 65%,#080808)}
+.profile:nth-child(3){background:linear-gradient(155deg,#1f3344,#100307 65%,#080808)}
+.profile:nth-child(4){background:linear-gradient(155deg,#765019,#1b0806 65%,#080808)}
+.online{
+  position:absolute;
+  top:7px;
+  right:7px;
+  width:10px;
+  height:10px;
+  border:2px solid #000;
+  border-radius:50%;
+  background:#2ecc71;
+}
+.verified{
+  position:absolute;
+  top:19px;
+  right:6px;
+  display:grid;
+  width:15px;
+  height:15px;
+  place-items:center;
+  border:2px solid #000;
+  border-radius:50%;
+  background:#397ee8;
+  font-size:.4rem;
+}
+.profile-copy{
+  width:100%;
+  padding:28px 8px 8px;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
+}
+.profile-copy b{display:block;font-size:.68rem}
+.profile-copy small{display:block;color:#bbb;font-size:.47rem}
+.profile-copy span{
+  display:inline-block;
+  margin-top:4px;
+  border:1px solid #9b0000;
+  border-radius:20px;
+  padding:2px 5px;
+  background:#460000;
+  color:#ffb3b3;
+  font-size:.4rem;
+  font-weight:bold;
+}
+.phone-nav{
+  position:absolute;
+  right:12px;
+  bottom:17px;
+  left:12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  align-items:center;
+  gap:3px;
+  border:1px solid #333;
+  border-radius:30px;
+  padding:6px;
+  background:#080808;
+  color:#888;
+  font-size:.65rem;
+  text-align:center;
+}
+.phone-nav span{padding:7px 3px;border-radius:25px}
+.phone-nav .active{background:#9b0000;color:white;font-weight:bold}
+
+/* SECTIONS */
+section{padding:100px 0}
+.section-head{max-width:760px;margin-bottom:45px}
+.section-head h2{
+  margin:14px 0 18px;
+  font-size:clamp(3rem,7vw,6rem);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-.065em;
+  text-transform:uppercase;
+}
+.section-head p{max-width:600px;color:#999}
+.cards,.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card,.step,.safety-item{
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:linear-gradient(145deg,#151313,#090909);
+}
+.card{min-height:290px;padding:28px}
+.card strong{color:var(--red)}
+.card h3{
+  margin:85px 0 10px;
+  font-size:1.4rem;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.card p,.step p,.safety-item p{color:#888;font-size:.82rem}
+.dark{
+  border-block:1px solid var(--line);
+  background:radial-gradient(circle at 10% 20%,rgba(100,0,15,.2),transparent 30%),#0a0909;
+}
+.step{min-height:250px;padding:27px}
+.step b{color:var(--red);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}
+.step h3{margin:65px 0 10px;text-transform:uppercase}
+.safety-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}
+.safety-list{display:grid;gap:10px}
+.safety-item{display:grid;grid-template-columns:35px 1fr;gap:15px;padding:21px}
+.safety-item strong{color:var(--red)}
+.safety-item h3{margin-bottom:5px;font-size:.85rem;text-transform:uppercase}
+.final{
+  border-block:1px solid var(--line);
+  background:linear-gradient(145deg,#080808,#250006);
+  text-align:center;
+}
+.final h2{
+  margin:15px auto 22px;
+  font-size:clamp(3.2rem,8vw,7rem);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-.065em;
+  text-transform:uppercase;
+}
+.final p{margin-bottom:28px;color:#999}
+footer{padding:28px 0;color:#777;font-size:.62rem;text-transform:uppercase}
+.footer{display:flex;justify-content:space-between;gap:20px}
+.reveal{opacity:0;transform:translateY(22px);transition:.75s}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero-grid,.safety-grid{grid-template-columns:1fr}
+  .cards,.steps{grid-template-columns:1fr}
+  .phone{margin-top:35px}
+}
+@media(max-width:680px){
+  .links{display:none}
+  .menu-button{display:block}
+  .hero{padding:115px 0 75px}
+  h1{font-size:clamp(3.5rem,17vw,5.3rem);overflow-wrap:anywhere}
+  .actions{display:grid}
+  .button{width:100%}
+  .phone{width:min(100%,355px);padding:11px;border-radius:49px}
+  .screen{min-height:620px;border-radius:39px}
+  section{padding:75px 0}
+  .section-head h2{font-size:clamp(3rem,15vw,4.5rem);overflow-wrap:anywhere}
+  .footer{display:grid}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  #intro{display:none}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
+
 <body>
-  <div id="intro" aria-hidden="true">
-    <div class="intro-copy"><b>Clear</b><b>Intentions</b><small>SXISSOR</small></div>
-    <button class="skip" type="button">Skip intro</button>
+<div id="intro">
+  <div>
+    <div class="intro-line active">No games.</div>
+    <div class="intro-line">Clear</div>
+    <div class="intro-line red">intentions.</div>
+    <div class="intro-brand">SX<span class="red">I</span>SSOR</div>
   </div>
-  <header><nav class="wrap"><a class="brand" href="#top">SX<i>I</i>SSOR</a><div class="links"><a href="#experience">Experience</a><a href="#safety">Safety</a><a class="join" href="mailto:hello@sxissorapp.com">Join waitlist</a></div></nav></header>
-  <main id="top">
-    <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">A new standard for WLW dating</div><h1>Clear.<span>Intentional.</span>Private.</h1><p class="lead">SXISSOR is a dating and community space for women who date women, built around mutual interest, privacy-safe discovery, and real conversations.</p><div class="actions"><a class="button" href="mailto:hello@sxissorapp.com?subject=SXISSOR%20Waitlist">Join the waitlist</a><a class="button alt" href="#experience">Explore SXISSOR</a></div></div><div class="phone-wrap"><div class="phone"><div class="screen"><div class="phone-logo">SX<i>I</i>SSOR</div><div class="discover"><b>Discover</b><small>Nearby, never exact</small></div><div class="profiles"><div class="profile"><div><b>Maya, 24</b><small>Nearby</small><span class="tag">Friends first</span></div></div><div class="profile"><div><b>Sofia, 22</b><small>Nearby</small><span class="tag">Serious dating</span></div></div><div class="profile"><div><b>Elena, 27</b><small>Nearby</small><span class="tag">Casual dating</span></div></div><div class="profile"><div><b>Amara, 25</b><small>Nearby</small><span class="tag">Serious dating</span></div></div></div></div></div></div></div></section>
-    <section id="experience"><div class="wrap"><div class="section-head"><div class="eyebrow">The experience</div><h2>Dating without the noise.</h2><p>SXISSOR removes games and prioritises clarity, trust, and meaningful connection.</p></div><div class="grid"><article class="card"><strong>01</strong><h3>Mutual matches</h3><p>No unsolicited messages. Conversation begins after shared interest.</p></article><article class="card"><strong>02</strong><h3>Privacy map</h3><p>Discover people nearby without streets, buildings, or exact live pins.</p></article><article class="card"><strong>03</strong><h3>Community safety</h3><p>Reporting, blocking, verification, and moderation by design.</p></article></div></div></section>
-    <section id="safety" class="statement"><div class="wrap"><h2>Designed to connect. Built to <span>protect.</span></h2></div></section>
-  </main>
-  <footer><div class="wrap">SXISSOR © 2026 · Clear intentions. Private by design.</div></footer>
-  <script>
-    (function () {
-      var intro = document.getElementById("intro");
-      function finish() {
-        if (!intro) return;
-        intro.classList.add("done");
-        setTimeout(function () { if (intro) intro.remove(); }, 600);
-      }
-      document.querySelector(".skip").addEventListener("click", finish);
-      window.addEventListener("load", function () { setTimeout(finish, 1800); });
-      setTimeout(finish, 3000);
-    })();
-  </script>
+  <button class="skip">Skip intro</button>
+</div>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#top">SX<span class="red">I</span>SSOR</a>
+    <div class="links">
+      <a href="#difference">Why SXISSOR</a>
+      <a href="#safety">Safety</a>
+      <a href="#community">Community</a>
+      <a class="join" href="mailto:hello@sxissorapp.com?subject=SXISSOR%20Waitlist">Join waitlist</a>
+    </div>
+    <button class="menu-button">Menu</button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="#difference">Why SXISSOR</a>
+    <a href="#safety">Safety</a>
+    <a href="#community">Community</a>
+    <a href="mailto:hello@sxissorapp.com?subject=SXISSOR%20Waitlist">Join waitlist</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">For women who date women</div>
+      <h1>Dating, with <span>intention.</span></h1>
+      <p class="lead">SXISSOR is a private dating and community space built for genuine connections, clear intentions, and conversations that go somewhere.</p>
+      <div class="actions">
+        <a class="button" href="mailto:hello@sxissorapp.com?subject=SXISSOR%20Waitlist">Join the waitlist</a>
+        <a class="button alt" href="#difference">Discover SXISSOR</a>
+      </div>
+    </div>
+
+    <div class="phone reveal">
+      <div class="screen">
+        <div class="app-head">
+          <div class="app-logo">SX <span class="red">I</span> SSOR</div>
+          <div class="app-tagline">No games. Clear intentions.</div>
+        </div>
+
+        <div class="discover">
+          <div><h3>Discover</h3><small>4 people nearby</small></div>
+          <div class="refresh">&#8635;</div>
+        </div>
+
+        <div class="quick-actions">
+          <div class="quick">
+            <span class="quick-icon">&#9776;</span>
+            <span><b>Filters</b><small>18-35 · Any intention</small></span>
+            <span>&rsaquo;</span>
+          </div>
+          <div class="quick wave">
+            <span class="quick-icon">&#9827;</span>
+            <span><b>Waves</b><small>1 waiting for you</small></span>
+            <span class="wave-count">1</span>
+          </div>
+        </div>
+
+        <div class="profiles">
+          <div class="profile"><span class="online"></span><div class="profile-copy"><b>Maya, 24</b><small>2 miles away</small><span>Friends first</span></div></div>
+          <div class="profile"><span class="online"></span><div class="profile-copy"><b>Sofia, 22</b><small>4 miles away</small><span>Serious dating</span></div></div>
+          <div class="profile"><span class="verified">&#10003;</span><div class="profile-copy"><b>Elena, 27</b><small>7 miles away</small><span>Friends first</span></div></div>
+          <div class="profile"><div class="profile-copy"><b>Amara, 25</b><small>9 miles away</small><span>Serious dating</span></div></div>
+        </div>
+
+        <div class="phone-nav">
+          <span class="active">SXISSOR</span>
+          <span>&#9679;</span>
+          <span>•••</span>
+          <span>&#9881;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="difference">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The difference</div>
+      <h2>Less noise.<br>More meaning.</h2>
+      <p>A focused experience where interest is mutual, boundaries are visible, and every feature is designed around the way women connect.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal"><strong>01</strong><h3>Clear intentions</h3><p>Know what someone is looking for before starting the conversation.</p></article>
+      <article class="card reveal"><strong>02</strong><h3>Mutual first</h3><p>Messaging begins after a match, creating space for wanted conversations.</p></article>
+      <article class="card reveal"><strong>03</strong><h3>Privacy by design</h3><p>Nearby discovery without exposing exact live locations or addresses.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="section-head reveal"><div class="eyebrow">How it works</div><h2>Simple on purpose.</h2></div>
+    <div class="steps">
+      <article class="step reveal"><b>Step one</b><h3>Wave</h3><p>Show interest without forcing a conversation.</p></article>
+      <article class="step reveal"><b>Step two</b><h3>Match</h3><p>Connect only when the interest is mutual.</p></article>
+      <article class="step reveal"><b>Step three</b><h3>Talk</h3><p>Start a genuine conversation in a safer private space.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="safety">
+  <div class="wrap safety-grid">
+    <div class="section-head reveal">
+      <div class="eyebrow">Safety, built in</div>
+      <h2>Your privacy is not an extra.</h2>
+      <p>SXISSOR is being built with privacy-aware discovery and practical tools that help members stay in control.</p>
+    </div>
+    <div class="safety-list reveal">
+      <article class="safety-item"><strong>01</strong><div><h3>Approximate location</h3><p>Discovery avoids showing exact live positions.</p></div></article>
+      <article class="safety-item"><strong>02</strong><div><h3>Block and report</h3><p>Clear controls make it easier to end unwanted contact.</p></div></article>
+      <article class="safety-item"><strong>03</strong><div><h3>Profile trust</h3><p>Verification tools help members understand who they are speaking with.</p></div></article>
+      <article class="safety-item"><strong>04</strong><div><h3>Mutual messaging</h3><p>Private messages are reserved for matched members.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="community">
+  <div class="wrap reveal">
+    <div class="eyebrow">Dating and community</div>
+    <h2>A space made for us.</h2>
+    <p>Meet, talk, and find community in one focused WLW space.</p>
+    <a class="button" href="mailto:hello@sxissorapp.com?subject=SXISSOR%20Waitlist">Join the waitlist</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer">
+    <span>&copy; 2026 SXISSOR</span>
+    <span>Clear intentions. Private connections.</span>
+  </div>
+</footer>
+
+<script>
+const intro=document.querySelector("#intro");
+const beats=[...document.querySelectorAll(".intro-line"),document.querySelector(".intro-brand")];
+const finish=()=>intro.classList.add("done");
+
+beats.forEach((beat,index)=>{
+  if(index===0)return;
+  setTimeout(()=>{
+    beats[index-1].classList.remove("active");
+    beat.classList.add("active");
+  },index*720);
+});
+
+setTimeout(finish,3600);
+document.querySelector(".skip").addEventListener("click",finish);
+
+const menuButton=document.querySelector(".menu-button");
+const mobileMenu=document.querySelector(".mobile-menu");
+
+menuButton.addEventListener("click",()=>mobileMenu.classList.toggle("open"));
+mobileMenu.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>mobileMenu.classList.remove("open")));
+
+const reveals=document.querySelectorAll(".reveal");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+
+reveals.forEach(item=>observer.observe(item));
+setTimeout(()=>reveals.forEach(item=>item.classList.add("visible")),1200);
+</script>
 </body>
 </html>
