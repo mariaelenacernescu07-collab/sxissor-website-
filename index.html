@@ -13,6 +13,9 @@
   --soft-black:#0b0909;
   --white:#fffdf9;
   --paper:#f3efe9;
+  --cream:#eee8df;
+  --cream-soft:#f7f2ec;
+  --cream-deep:#e2d9cf;
   --muted:#a39b94;
   --red:#c9001f;
   --line:rgba(255,255,255,.16);
@@ -370,7 +373,7 @@ h1 em {
   border:1px solid var(--paper);
   border-radius:999px;
   padding:0 22px;
-  background:var(--paper);
+  background:var(--cream);
   color:var(--black);
   font-size:.64rem;
   font-weight:900;
@@ -432,7 +435,7 @@ section {
 
 .light-section {
   border-block:1px solid rgba(5,5,5,.12);
-  background:var(--paper);
+  background:var(--cream);
   color:var(--black);
 }
 
@@ -453,7 +456,7 @@ section {
 .light-section .step,
 .light-section .safety-item {
   border-color:rgba(5,5,5,.14);
-  background:linear-gradient(145deg,#fffdf9,#ebe5dd);
+  background:linear-gradient(145deg,var(--cream-soft),var(--cream-deep));
 }
 
 .light-section .interactive-card:hover,
@@ -876,19 +879,14 @@ footer {
 }
 
 @media (prefers-reduced-motion:reduce) {
-  * {
-    animation:none!important;
-    transition:none!important;
+  html {
     scroll-behavior:auto!important;
-  }
-
-  #intro {
-    display:none;
   }
 
   .reveal {
     opacity:1;
     transform:none;
+    transition:none!important;
   }
 }
 </style>
