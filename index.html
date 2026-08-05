@@ -194,10 +194,6 @@ button {
   }
 }
 
-@keyframes phoneFloat {
-  0%,100% { transform:translateY(0) rotate(-1deg); }
-  50% { transform:translateY(-12px) rotate(1deg); }
-}
 
 @keyframes tickerMove {
   from { transform:translateX(0); }
@@ -303,9 +299,10 @@ nav {
   position:relative;
   z-index:2;
   display:grid;
-  grid-template-columns:1.08fr .92fr;
-  gap:70px;
+  grid-template-columns:1fr;
   align-items:center;
+  justify-items:center;
+  text-align:center;
 }
 
 h1 {
@@ -321,6 +318,31 @@ h1 em {
   color:var(--red);
   font-style:normal;
   font-weight:900;
+}
+
+.hero-brand-logo {
+  margin:0 0 34px;
+  color:var(--paper);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:clamp(3.1rem,13vw,9rem);
+  font-weight:900;
+  letter-spacing:.18em;
+  line-height:.9;
+  text-transform:uppercase;
+}
+
+.hero-brand-logo i {
+  color:var(--red);
+  font-style:normal;
+}
+
+.hero-copy {
+  width:min(100%,900px);
+  margin-inline:auto;
+}
+
+.hero .actions {
+  justify-content:center;
 }
 
 .lead {
@@ -372,331 +394,8 @@ h1 em {
   text-transform:uppercase;
 }
 
-/* PHONE PREVIEW */
-
-.preview {
-  position:relative;
-  width:min(100%,370px);
-  margin-inline:auto;
-  padding:15px;
-  overflow:hidden;
-  border:1px solid #5b5552;
-  border-radius:56px;
-  background:linear-gradient(145deg,#373331,#090909 24%);
-  box-shadow:0 45px 100px rgba(0,0,0,.72),0 0 80px rgba(154,0,24,.2);
-  animation:phoneFloat 6s ease-in-out infinite;
-}
-
-.preview::before {
-  content:"";
-  position:absolute;
-  z-index:5;
-  top:9px;
-  left:50%;
-  width:104px;
-  height:27px;
-  border:1px solid #282525;
-  border-radius:20px;
-  background:#030303;
-  transform:translateX(-50%);
-}
-
-.preview::after {
-  content:"";
-  position:absolute;
-  z-index:5;
-  bottom:7px;
-  left:50%;
-  width:100px;
-  height:4px;
-  border-radius:10px;
-  background:#d5d0ca;
-  transform:translateX(-50%);
-  opacity:.7;
-}
-
-.phone-screen {
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  height:650px;
-  border:1px solid #252121;
-  border-radius:43px;
-  background:#000;
-  padding:45px 13px 22px;
-}
-
-.app-head {
-  margin:8px 0 21px;
+.hero .hero-note {
   text-align:center;
-}
-
-.mini-brand {
-  font-size:1.12rem;
-  font-weight:900;
-  letter-spacing:.18em;
-}
-
-.app-tagline {
-  margin-top:3px;
-  color:#666;
-  font-size:.48rem;
-  font-weight:800;
-}
-
-.discover-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.preview-title {
-  font-size:1.22rem;
-  font-weight:900;
-}
-
-.discover-copy small {
-  display:block;
-  color:#777;
-  font-size:.59rem;
-}
-
-.refresh-dot {
-  display:grid;
-  flex:none;
-  width:31px;
-  height:31px;
-  place-items:center;
-  border:1px solid #2b2b2b;
-  border-radius:50%;
-  background:#111;
-}
-
-.quick-actions {
-  display:grid;
-  gap:6px;
-  margin-bottom:10px;
-}
-
-.quick-action {
-  display:grid;
-  grid-template-columns:20px 1fr auto;
-  align-items:center;
-  gap:8px;
-  border:1px solid #333;
-  border-radius:13px;
-  padding:8px 9px;
-  background:#111;
-  color:var(--paper);
-  cursor:pointer;
-  text-align:left;
-  transition:.2s;
-}
-
-.quick-action:hover,
-.quick-action.selected {
-  transform:translateY(-1px);
-  border-color:#8b1928;
-}
-
-.quick-action.wave {
-  border-color:#7c1111;
-  background:#200000;
-}
-
-.action-icon {
-  color:#ffb3b3;
-  text-align:center;
-}
-
-.action-text b,
-.action-text small {
-  display:block;
-}
-
-.action-text b {
-  font-size:.62rem;
-}
-
-.action-text small {
-  color:#888;
-  font-size:.48rem;
-}
-
-.wave-count {
-  display:grid;
-  min-width:20px;
-  height:20px;
-  place-items:center;
-  border-radius:50%;
-  background:#9b0000;
-  font-size:.5rem;
-  font-weight:900;
-}
-
-.profiles {
-  display:grid;
-  flex:1;
-  min-height:0;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:repeat(2,minmax(0,1fr));
-  gap:5px;
-  padding-bottom:56px;
-}
-
-.profile {
-  position:relative;
-  min-height:0;
-  display:flex;
-  align-items:flex-end;
-  overflow:hidden;
-  border:1px solid #292929;
-  border-radius:16px;
-  background:linear-gradient(155deg,#6b1320,#1b0307 64%,#090909);
-}
-
-.profile:nth-child(2) {
-  background:linear-gradient(155deg,#351129,#19030e 64%,#090909);
-}
-
-.profile:nth-child(3) {
-  background:linear-gradient(155deg,#212a35,#120307 64%,#090909);
-}
-
-.profile:nth-child(4) {
-  background:linear-gradient(155deg,#684616,#1d0907 64%,#090909);
-}
-
-.profile-copy {
-  width:100%;
-  padding:28px 8px 8px;
-  background:linear-gradient(transparent,rgba(0,0,0,.88));
-}
-
-.profile b,
-.profile small {
-  display:block;
-}
-
-.profile b {
-  font-size:.67rem;
-}
-
-.profile small {
-  color:#bbb;
-  font-size:.47rem;
-}
-
-.profile span {
-  display:inline-block;
-  margin-top:4px;
-  border:1px solid #9b0000;
-  border-radius:20px;
-  padding:2px 5px;
-  background:rgba(70,0,0,.9);
-  color:#ffb3b3;
-  font-size:.4rem;
-  font-weight:800;
-}
-
-.online-dot {
-  position:absolute;
-  top:7px;
-  right:7px;
-  width:10px;
-  height:10px;
-  border:2px solid #000;
-  border-radius:50%;
-  background:#2ecc71;
-}
-
-.verified-dot {
-  position:absolute;
-  top:20px;
-  right:6px;
-  display:grid;
-  width:14px;
-  height:14px;
-  place-items:center;
-  border:2px solid #000;
-  border-radius:50%;
-  background:#397ee8;
-  font-size:.38rem;
-}
-
-.phone-nav {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:4px;
-  position:absolute;
-  right:13px;
-  bottom:17px;
-  left:13px;
-  border:1px solid #383332;
-  border-radius:999px;
-  padding:7px;
-  background:#090909;
-}
-
-.phone-nav button {
-  border:0;
-  border-radius:999px;
-  padding:6px 3px;
-  background:transparent;
-  color:#817a75;
-  cursor:pointer;
-}
-
-.phone-nav button:first-child {
-  font-size:.42rem;
-  font-weight:900;
-}
-
-.phone-nav button.active {
-  background:#9b0000;
-  color:var(--white);
-}
-
-.feature-detail {
-  width:min(100%,430px);
-  min-height:106px;
-  margin:28px auto 0;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:20px 22px;
-  background:linear-gradient(145deg,rgba(86,0,13,.34),rgba(10,10,10,.92));
-}
-
-.feature-detail b {
-  display:block;
-  margin-bottom:6px;
-  color:#ffb3b3;
-  font-size:.65rem;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
-
-.feature-detail p {
-  color:#b2aaa4;
-  font-size:.82rem;
-}
-
-.feature-detail.flash {
-  animation:detailFlash .35s ease;
-}
-
-@keyframes detailFlash {
-  from {
-    opacity:.45;
-    transform:translateY(6px);
-  }
-  to {
-    opacity:1;
-    transform:none;
-  }
 }
 
 /* SECTIONS */
@@ -726,6 +425,50 @@ h1 em {
 section {
   padding:105px 0;
 }
+
+.light-section {
+  border-block:1px solid rgba(5,5,5,.12);
+  background:var(--paper);
+  color:var(--black);
+}
+
+.light-section .section-head p,
+.light-section .pillar p,
+.light-section .step p,
+.light-section .safety-item p,
+.light-section .card-more > span {
+  color:#514944;
+}
+
+.light-section .eyebrow,
+.light-section .tap-note {
+  color:#8b0015;
+}
+
+.light-section .pillar,
+.light-section .step,
+.light-section .safety-item {
+  border-color:rgba(5,5,5,.14);
+  background:linear-gradient(145deg,#fffdf9,#ebe5dd);
+}
+
+.light-section .interactive-card:hover,
+.light-section .interactive-card:focus-visible,
+.light-section .interactive-card.open {
+  border-color:rgba(201,0,31,.48);
+  background-color:rgba(201,0,31,.07);
+}
+
+.light-section .number,
+.light-section .safety-item strong {
+  color:var(--red);
+}
+
+.light-section .button.alt {
+  border-color:rgba(5,5,5,.34);
+  color:var(--black);
+}
+
 
 .section-head {
   max-width:720px;
@@ -862,6 +605,18 @@ section {
   gap:10px;
 }
 
+#safety {
+  padding:82px 0;
+}
+
+#safety .section-head {
+  margin-bottom:0;
+}
+
+#safety .safety-grid {
+  gap:42px;
+}
+
 .safety-item {
   display:grid;
   grid-template-columns:38px 1fr;
@@ -938,9 +693,10 @@ footer {
     grid-template-columns:1fr;
   }
 
-  .preview {
-    margin-top:25px;
+  #safety .safety-grid {
+    gap:28px;
   }
+
 
   .pillars,
   .steps {
@@ -957,6 +713,12 @@ footer {
 }
 
 @media (max-width:680px) {
+  .hero-brand-logo {
+    font-size:clamp(2.7rem,18vw,4.5rem);
+    letter-spacing:.12em;
+    overflow-wrap:normal;
+  }
+
   html,
   body,
   header,
@@ -1002,7 +764,6 @@ footer {
   }
 
   .hero-grid > *,
-  .phone-column,
   .section-head,
   .pillars,
   .steps,
@@ -1053,19 +814,7 @@ footer {
     max-width:100%;
   }
 
-  .preview {
-    width:min(calc(100vw - 32px),355px);
-    max-width:100%;
-    padding:11px;
-    border-radius:49px;
-    animation:none;
-  }
 
-  .phone-screen {
-    height:620px;
-    border-radius:39px;
-    padding-inline:11px;
-  }
 
   .feature-detail,
   .pillar,
@@ -1076,7 +825,11 @@ footer {
   }
 
   section {
-    padding:78px 0;
+    padding:72px 0;
+  }
+
+  #safety {
+    padding:58px 0 64px;
   }
 
   .section-head h2 {
@@ -1102,29 +855,8 @@ footer {
     margin-inline:10px;
   }
 
-  .preview {
-    width:calc(100vw - 28px);
-  }
 
-  .phone-screen {
-    height:600px;
-  }
 
-  .profile-copy {
-    padding:7px;
-  }
-
-  .profile b {
-    font-size:.61rem;
-  }
-
-  .profile small {
-    font-size:.43rem;
-  }
-
-  .profile span {
-    font-size:.36rem;
-  }
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -1182,101 +914,12 @@ footer {
 <main id="top">
 <section class="hero">
   <div class="wrap hero-grid">
-    <div class="reveal">
-      <div class="eyebrow">WLW dating, redesigned</div>
-      <h1 class="serif">Made for <em>real connection.</em></h1>
-
-      <p class="lead">
-        A private dating and community space for women who date women.
-        Meet nearby, match mutually, and talk with purpose.
-      </p>
+    <div class="reveal hero-copy">
+      <div class="hero-brand-logo">SX<i>I</i>SSOR</div>
 
       <div class="actions">
         <a class="button" href="mailto:hello.sxissor@gmail.com?subject=SXISSOR%20Waitlist">Join the waitlist</a>
         <a class="button alt" href="#difference">Discover SXISSOR</a>
-      </div>
-
-      <p class="hero-note">Private discovery. Mutual matches. Real conversation.</p>
-    </div>
-
-    <div class="phone-column">
-      <div class="preview reveal">
-        <div class="phone-screen">
-          <div class="app-head">
-            <div class="mini-brand">SX <i>I</i> SSOR</div>
-            <div class="app-tagline">No games. Clear intentions.</div>
-          </div>
-
-          <div class="discover-row">
-            <div class="discover-copy">
-              <div class="preview-title">Discover</div>
-              <small>4 people nearby</small>
-            </div>
-            <div class="refresh-dot">&#8635;</div>
-          </div>
-
-          <div class="quick-actions">
-            <button class="quick-action feature-trigger"
-              data-title="Filters"
-              data-copy="Choose age range, dating intention, reply style, distance, and verification preferences.">
-              <span class="action-icon">&#9776;</span>
-              <span class="action-text"><b>Filters</b><small>18-35 · Any intention</small></span>
-              <span>&rsaquo;</span>
-            </button>
-
-            <button class="quick-action wave feature-trigger"
-              data-title="Waves"
-              data-copy="A Wave is a low-pressure way to show interest. If the interest becomes mutual, SXISSOR creates a match.">
-              <span class="action-icon">&#9827;</span>
-              <span class="action-text"><b>Waves</b><small>1 waiting for you</small></span>
-              <span class="wave-count">1</span>
-            </button>
-          </div>
-
-          <div class="profiles">
-            <div class="profile">
-              <span class="online-dot"></span>
-              <div class="profile-copy"><b>Maya, 24</b><small>2 miles away</small><span>Friends first</span></div>
-            </div>
-
-            <div class="profile">
-              <span class="online-dot"></span>
-              <div class="profile-copy"><b>Sofia, 22</b><small>4 miles away</small><span>Serious dating</span></div>
-            </div>
-
-            <div class="profile">
-              <span class="verified-dot">&#10003;</span>
-              <div class="profile-copy"><b>Elena, 27</b><small>7 miles away</small><span>Friends first</span></div>
-            </div>
-
-            <div class="profile">
-              <div class="profile-copy"><b>Amara, 25</b><small>9 miles away</small><span>Serious dating</span></div>
-            </div>
-          </div>
-
-          <div class="phone-nav">
-            <button class="active feature-trigger"
-              data-title="Discover"
-              data-copy="Browse nearby members using approximate distance only. Exact live locations are never shown.">SXISSOR</button>
-
-            <button class="feature-trigger"
-              data-title="Privacy Map"
-              data-copy="Explore nearby connections through privacy-safe zones.">&#128205;</button>
-
-            <button class="feature-trigger"
-              data-title="Messages"
-              data-copy="Matched members can talk privately through conversations, images, and voice notes.">&#128172;</button>
-
-            <button class="feature-trigger"
-              data-title="Settings and Safety"
-              data-copy="Manage your profile, privacy, blocked users, notifications, and account security.">&#9881;</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-detail reveal">
-        <b>Explore the app</b>
-        <p>Tap Filters, Waves, or a navigation button inside the phone to learn how SXISSOR works.</p>
       </div>
     </div>
   </div>
@@ -1289,11 +932,9 @@ footer {
   </div>
 </div>
 
-<section id="difference">
+<section id="difference" class="light-section">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">The difference</div>
-      <h2 class="serif">Less noise.<br>More meaning.</h2>
       <p>A focused experience where interest is mutual, boundaries are visible, and every feature is designed around the way women connect.</p>
       <div class="tap-note">Tap each feature to learn more</div>
     </div>
@@ -1327,7 +968,6 @@ footer {
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">How it works</div>
-      <h2 class="serif">Simple on purpose.</h2>
       <div class="tap-note">Tap a step to see what happens</div>
     </div>
 
@@ -1353,11 +993,10 @@ footer {
   </div>
 </section>
 
-<section id="safety">
+<section id="safety" class="light-section">
   <div class="wrap safety-grid">
     <div class="section-head reveal">
       <div class="eyebrow">Safety, built in</div>
-      <h2 class="serif">Your privacy is not an extra.</h2>
       <p>SXISSOR is being built with privacy-aware discovery and practical tools that help members stay in control.</p>
       <div class="tap-note">Tap each protection to learn more</div>
     </div>
@@ -1386,7 +1025,7 @@ footer {
         <div>
           <h3>Profile trust</h3>
           <p>Verification tools help members understand who they are speaking with.</p>
-          <div class="card-more"><span>Selfie verification and clear trust indicators help identify fake or misleading profiles.</span></div>
+          <div class="card-more"><span>Video verification and clear trust indicators help identify fake or misleading profiles.</span></div>
         </div>
       </article>
 
@@ -1470,24 +1109,6 @@ footer {
   setTimeout(() => {
     revealItems.forEach(item => item.classList.add("visible"));
   },1200);
-
-  const detail = document.querySelector(".feature-detail");
-  const triggers = document.querySelectorAll(".feature-trigger");
-
-  triggers.forEach(trigger => {
-    trigger.addEventListener("click",() => {
-      triggers.forEach(item => item.classList.remove("active","selected"));
-      trigger.classList.add(trigger.closest(".phone-nav") ? "active" : "selected");
-
-      detail.innerHTML = `
-        <b>${trigger.dataset.title}</b>
-        <p>${trigger.dataset.copy}</p>
-      `;
-
-      detail.classList.remove("flash");
-      requestAnimationFrame(() => detail.classList.add("flash"));
-    });
-  });
 
   const cards = document.querySelectorAll(".interactive-card");
 
