@@ -321,14 +321,18 @@ h1 em {
 }
 
 .hero-brand-logo {
+  width:100%;
+  max-width:100%;
   margin:0 0 34px;
   color:var(--paper);
   font-family:Arial, Helvetica, sans-serif;
-  font-size:clamp(3.1rem,13vw,9rem);
+  font-size:clamp(3rem,12vw,8.2rem);
   font-weight:900;
-  letter-spacing:.18em;
+  letter-spacing:.16em;
   line-height:.9;
+  text-align:center;
   text-transform:uppercase;
+  white-space:nowrap;
 }
 
 .hero-brand-logo i {
@@ -714,9 +718,10 @@ footer {
 
 @media (max-width:680px) {
   .hero-brand-logo {
-    font-size:clamp(2.7rem,18vw,4.5rem);
-    letter-spacing:.12em;
+    font-size:clamp(2.05rem,11.8vw,3.35rem);
+    letter-spacing:.095em;
     overflow-wrap:normal;
+    white-space:nowrap;
   }
 
   html,
@@ -734,20 +739,20 @@ footer {
   }
 
   body {
-    width:calc(100% - 32px);
-    margin-inline:auto;
+    width:100%;
+    margin-inline:0;
   }
 
   header {
-    width:calc(100% - 32px);
-    left:16px;
-    right:16px;
+    width:100%;
+    left:0;
+    right:0;
   }
 
   .wrap {
     width:auto;
     max-width:none;
-    margin-inline:12px;
+    margin-inline:16px;
     padding:0;
   }
 
@@ -773,8 +778,14 @@ footer {
   }
 
   .hero {
-    min-height:auto;
-    padding:118px 0 74px;
+    min-height:100svh;
+    align-items:center;
+    padding:112px 0 calc(72px + env(safe-area-inset-bottom));
+  }
+
+  .hero-grid {
+    min-height:calc(100svh - 184px - env(safe-area-inset-bottom));
+    align-content:center;
   }
 
   h1 {
@@ -851,8 +862,13 @@ footer {
     font-size:2.62rem;
   }
 
+  .hero-brand-logo {
+    font-size:clamp(1.82rem,11vw,2.55rem);
+    letter-spacing:.075em;
+  }
+
   .wrap {
-    margin-inline:10px;
+    margin-inline:12px;
   }
 
 
