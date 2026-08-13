@@ -1226,6 +1226,71 @@ footer {
   }
 }
 
+
+/* FINAL MOBILE POLISH */
+
+.final-brand-heading span {
+  display:inline;
+}
+
+@media (max-width:680px) {
+  .final {
+    padding:72px 0 64px;
+  }
+
+  .final-brand-heading {
+    max-width:520px;
+    margin:14px auto 22px;
+    font-size:clamp(2.7rem,13vw,4rem);
+    line-height:.92;
+    letter-spacing:-.06em;
+    text-align:center;
+  }
+
+  .final-brand-heading span {
+    display:block;
+    white-space:nowrap;
+  }
+
+  .final-brand-heading span + span {
+    margin-top:.22em;
+  }
+
+  .final p {
+    max-width:520px;
+    margin:0 auto 26px;
+    padding:0 4px;
+    font-size:.98rem;
+    line-height:1.55;
+  }
+
+  .final .button {
+    width:min(100%,520px);
+    margin-inline:auto;
+  }
+
+  .footer-row {
+    width:100%;
+    margin:0;
+    padding:26px 20px calc(28px + env(safe-area-inset-bottom));
+    display:grid;
+    gap:14px;
+    justify-items:center;
+    text-align:center;
+    background:var(--cream);
+    color:var(--black);
+    border-top:1px solid rgba(5,5,5,.12);
+    font-size:.72rem;
+    letter-spacing:.04em;
+    text-transform:none;
+  }
+
+  .footer-row a,
+  .footer-row span {
+    color:var(--black);
+  }
+}
+
 </style>
 </head>
 
@@ -1358,7 +1423,7 @@ footer {
 <section class="final" id="community">
   <div class="wrap reveal">
     <div class="eyebrow">Dating and community</div>
-    <h2 class="final-brand-heading">Made by women for women.</h2>
+    <h2 class="final-brand-heading"><span>Made by women</span><span>for women.</span></h2>
     <p>Meet, talk, and find community in one focused WLW space.</p>
     <a class="button" href="mailto:hello.sxissor@gmail.com?subject=SXISSOR%20Waitlist">Join the waitlist</a>
   </div>
