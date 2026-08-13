@@ -692,6 +692,223 @@ footer {
   transform:none;
 }
 
+
+/* SKETCH-INSPIRED HOW SXISSOR WORKS */
+
+.how-sxissor {
+  padding:110px 0;
+}
+
+.how-heading {
+  max-width:820px;
+  margin-bottom:42px;
+}
+
+.how-heading h2 {
+  margin:12px 0 20px;
+  color:var(--black);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(3rem,7vw,6.2rem);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-.065em;
+  text-transform:uppercase;
+}
+
+.how-rule {
+  width:100%;
+  height:2px;
+  background:var(--black);
+  opacity:.88;
+}
+
+.how-list {
+  display:grid;
+  border-top:1px solid rgba(5,5,5,.2);
+}
+
+.how-row {
+  display:grid;
+  grid-template-columns:105px 1fr;
+  gap:28px;
+  align-items:center;
+  min-height:150px;
+  border-bottom:1px solid rgba(5,5,5,.2);
+  padding:26px 8px;
+}
+
+.how-number {
+  color:var(--red);
+  font-size:1.05rem;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+
+.how-copy h3 {
+  margin-bottom:8px;
+  color:var(--black);
+  font-size:clamp(1.35rem,2.4vw,2rem);
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.how-copy p {
+  max-width:760px;
+  color:#514944;
+  font-size:clamp(.95rem,1.4vw,1.08rem);
+}
+
+/* SAFETY — BLACK BACKGROUND */
+
+#safety.safety-dark {
+  border-block:1px solid var(--line);
+  background:
+    radial-gradient(circle at 12% 18%,rgba(115,0,18,.18),transparent 28%),
+    var(--black);
+  color:var(--paper);
+  padding:110px 0;
+}
+
+.safety-simple-heading {
+  max-width:820px;
+  margin-bottom:42px;
+}
+
+.safety-simple-heading h2 {
+  margin:12px 0 20px;
+  color:var(--paper);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(3rem,7vw,6.2rem);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-.065em;
+  text-transform:uppercase;
+}
+
+.safety-rule {
+  width:100%;
+  height:1px;
+  background:rgba(255,255,255,.28);
+}
+
+.safety-simple-list {
+  display:grid;
+  border-top:1px solid rgba(255,255,255,.16);
+}
+
+.safety-simple-row {
+  display:grid;
+  grid-template-columns:105px 1fr;
+  gap:28px;
+  align-items:center;
+  min-height:148px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+  padding:26px 8px;
+}
+
+.safety-simple-number {
+  color:var(--red);
+  font-size:1.05rem;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+
+.safety-simple-copy h3 {
+  margin-bottom:8px;
+  color:var(--paper);
+  font-size:clamp(1.35rem,2.4vw,2rem);
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.safety-simple-copy p {
+  max-width:780px;
+  color:#c9c0b9;
+  font-size:clamp(.95rem,1.4vw,1.08rem);
+}
+
+/* FINAL — BLACK + SXISSOR TYPOGRAPHY */
+
+.final {
+  background:var(--white);
+  color:var(--black);
+}
+
+.final .eyebrow,
+.final p {
+  color:#514944;
+}
+
+.final .button {
+  border-color:var(--black);
+  background:var(--black);
+  color:var(--white);
+}
+
+.final-brand-heading {
+  max-width:980px;
+  margin:16px auto 25px;
+  color:var(--black);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(3.4rem,8vw,7.5rem);
+  font-weight:900;
+  line-height:.88;
+  letter-spacing:-.07em;
+}
+
+@media (max-width:680px) {
+  .how-sxissor {
+    padding:78px 0;
+  }
+
+  .how-heading h2 {
+    font-size:clamp(2.8rem,15vw,4.4rem);
+  }
+
+  .how-row {
+    grid-template-columns:54px 1fr;
+    gap:16px;
+    min-height:130px;
+    padding:24px 0;
+  }
+
+  .how-copy h3 {
+    font-size:1.28rem;
+  }
+
+  .how-copy p {
+    font-size:.93rem;
+  }
+
+  #safety.safety-dark {
+    padding:78px 0;
+  }
+
+  .safety-simple-heading h2 {
+    font-size:clamp(2.8rem,15vw,4.4rem);
+  }
+
+  .safety-simple-row {
+    grid-template-columns:54px 1fr;
+    gap:16px;
+    min-height:130px;
+    padding:24px 0;
+  }
+
+  .safety-simple-copy h3 {
+    font-size:1.28rem;
+  }
+
+  .safety-simple-copy p {
+    font-size:.93rem;
+  }
+
+  .final-brand-heading {
+    font-size:clamp(3rem,15vw,4.5rem);
+  }
+}
+
+
 /* MOBILE */
 
 @media (max-width:900px) {
@@ -889,6 +1106,126 @@ footer {
     transition:none!important;
   }
 }
+
+/* CENTERED LAYOUT — keeping the approved SXISSOR design */
+
+.how-heading,
+.safety-simple-heading {
+  max-width:820px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+.how-rule,
+.safety-rule {
+  width:min(100%,620px);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.how-list,
+.safety-simple-list {
+  width:min(100%,900px);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.how-row,
+.safety-simple-row {
+  grid-template-columns:70px minmax(0,680px);
+  justify-content:center;
+  text-align:left;
+}
+
+.how-copy,
+.safety-simple-copy {
+  width:100%;
+}
+
+.how-copy p,
+.safety-simple-copy p {
+  max-width:680px;
+}
+
+#safety .eyebrow,
+.how-heading .eyebrow {
+  text-align:center;
+}
+
+@media (max-width:680px) {
+  .how-heading,
+  .safety-simple-heading {
+    text-align:center;
+  }
+
+  .how-list,
+  .safety-simple-list {
+    width:100%;
+  }
+
+  .how-row,
+  .safety-simple-row {
+    grid-template-columns:44px 1fr;
+    justify-content:stretch;
+    text-align:left;
+  }
+}
+
+
+/* TYPOGRAPHY SCALE — same SXISSOR font, smaller list text */
+
+.how-heading h2,
+.safety-simple-heading h2 {
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:900;
+  line-height:.92;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+}
+
+.how-copy h3,
+.safety-simple-copy h3 {
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(1.05rem,1.7vw,1.35rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+.how-copy p,
+.safety-simple-copy p {
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(.82rem,1vw,.95rem);
+  line-height:1.6;
+}
+
+.how-number,
+.safety-simple-number {
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.88rem;
+  font-weight:900;
+}
+
+@media (max-width:680px) {
+  .how-heading h2,
+  .safety-simple-heading h2 {
+    font-size:clamp(2.25rem,11vw,3.2rem);
+  }
+
+  .how-copy h3,
+  .safety-simple-copy h3 {
+    font-size:1rem;
+  }
+
+  .how-copy p,
+  .safety-simple-copy p {
+    font-size:.82rem;
+  }
+}
+
 </style>
 </head>
 
@@ -946,109 +1283,72 @@ footer {
   </div>
 </div>
 
-<section id="difference" class="light-section">
+<section id="difference" class="light-section how-sxissor">
   <div class="wrap">
-    <div class="section-head reveal">
-      <p>A focused experience where interest is mutual, boundaries are visible, and every feature is designed around the way women connect.</p>
-      <div class="tap-note">Tap each feature to learn more</div>
+    <div class="how-heading reveal">
+      <div class="eyebrow">Discover SXISSOR</div>
+      <h2>How SXISSOR works</h2>
+      <div class="how-rule"></div>
     </div>
 
-    <div class="pillars reveal">
-      <article class="pillar interactive-card" tabindex="0">
-        <div class="number">01</div>
-        <h3>Clear intentions</h3>
-        <p>Know what someone is looking for before starting the conversation.</p>
-        <div class="card-more"><span>Profiles make dating intentions visible from the beginning, helping members find people who want the same kind of connection.</span></div>
+    <div class="how-list reveal">
+      <article class="how-row">
+        <div class="how-number">01</div>
+        <div class="how-copy">
+          <h3>Wave</h3>
+          <p>You must send the user a Wave to show that you are interested.</p>
+        </div>
       </article>
 
-      <article class="pillar interactive-card" tabindex="0">
-        <div class="number">02</div>
-        <h3>Mutual first</h3>
-        <p>Messaging begins after a match, creating space for wanted conversations.</p>
-        <div class="card-more"><span>A Wave shows interest without opening somebody's inbox. Private messaging unlocks only after both members choose each other.</span></div>
+      <article class="how-row">
+        <div class="how-number">02</div>
+        <div class="how-copy">
+          <h3>Mutual match</h3>
+          <p>Both parties must Wave at each other to create a mutual match.</p>
+        </div>
       </article>
 
-      <article class="pillar interactive-card" tabindex="0">
-        <div class="number">03</div>
-        <h3>Privacy by design</h3>
-        <p>Nearby discovery without exposing exact live locations or addresses.</p>
-        <div class="card-more"><span>SXISSOR uses approximate distance and privacy zones so discovery can feel local without displaying a person's exact position.</span></div>
+      <article class="how-row">
+        <div class="how-number">03</div>
+        <div class="how-copy">
+          <h3>Message each other</h3>
+          <p>After both parties have Waved at each other, the match is created and users are able to chat.</p>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
-<section class="dark-panel">
+<section id="safety" class="dark-panel safety-dark">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">How it works</div>
-      <div class="tap-note">Tap a step to see what happens</div>
-    </div>
-
-    <div class="steps">
-      <article class="step reveal interactive-card" tabindex="0">
-        <b>Step one</b><h3>Wave</h3>
-        <p>Show interest without forcing a conversation.</p>
-        <div class="card-more"><span>The other member can privately decide whether they would like to Wave back.</span></div>
-      </article>
-
-      <article class="step reveal interactive-card" tabindex="0">
-        <b>Step two</b><h3>Match</h3>
-        <p>Connect only when the interest is mutual.</p>
-        <div class="card-more"><span>When two members Wave at one another, SXISSOR creates a mutual connection and unlocks their private chat.</span></div>
-      </article>
-
-      <article class="step reveal interactive-card" tabindex="0">
-        <b>Step three</b><h3>Talk</h3>
-        <p>Start a genuine conversation in a safer private space.</p>
-        <div class="card-more"><span>Matched members can chat, share images, and send voice notes while keeping safety controls close by.</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="safety" class="light-section">
-  <div class="wrap safety-grid">
-    <div class="section-head reveal">
+    <div class="safety-simple-heading reveal">
       <div class="eyebrow">Safety, built in</div>
-      <p>SXISSOR is being built with privacy-aware discovery and practical tools that help members stay in control.</p>
-      <div class="tap-note">Tap each protection to learn more</div>
+      <h2>SXISSOR Safety</h2>
+      <div class="safety-rule"></div>
     </div>
 
-    <div class="safety-list reveal">
-      <article class="safety-item interactive-card" tabindex="0">
-        <strong>01</strong>
-        <div>
-          <h3>Approximate location</h3>
-          <p>Discovery is designed to avoid showing exact live positions.</p>
-          <div class="card-more"><span>The privacy map uses broad nearby areas. Street addresses and exact live coordinates are never shown.</span></div>
+    <div class="safety-simple-list reveal">
+      <article class="safety-simple-row">
+        <div class="safety-simple-number">01</div>
+        <div class="safety-simple-copy">
+          <h3>Location</h3>
+          <p>Everyone on the map feature is placed in random places in downtown of each city, so no one’s location is exposed.</p>
         </div>
       </article>
 
-      <article class="safety-item interactive-card" tabindex="0">
-        <strong>02</strong>
-        <div>
-          <h3>Block and report</h3>
-          <p>Clear controls make it easier to end unwanted contact.</p>
-          <div class="card-more"><span>Blocking removes contact between both members. Reports can be reviewed for unsafe behaviour.</span></div>
+      <article class="safety-simple-row">
+        <div class="safety-simple-number">02</div>
+        <div class="safety-simple-copy">
+          <h3>Block</h3>
+          <p>You can block people who are bothering you or making your experience uncomfortable.</p>
         </div>
       </article>
 
-      <article class="safety-item interactive-card" tabindex="0">
-        <strong>03</strong>
-        <div>
-          <h3>Profile trust</h3>
-          <p>Verification tools help members understand who they are speaking with.</p>
-          <div class="card-more"><span>Video verification and clear trust indicators help identify fake or misleading profiles.</span></div>
-        </div>
-      </article>
-
-      <article class="safety-item interactive-card" tabindex="0">
-        <strong>04</strong>
-        <div>
-          <h3>Mutual messaging</h3>
-          <p>Private messages are reserved for matched members.</p>
-          <div class="card-more"><span>Members cannot send unsolicited private messages. A mutual match must happen first.</span></div>
+      <article class="safety-simple-row">
+        <div class="safety-simple-number">03</div>
+        <div class="safety-simple-copy">
+          <h3>Report</h3>
+          <p>You are able to report any suspicious behaviour or anyone making you feel uncomfortable.</p>
         </div>
       </article>
     </div>
@@ -1058,7 +1358,7 @@ footer {
 <section class="final" id="community">
   <div class="wrap reveal">
     <div class="eyebrow">Dating and community</div>
-    <h2 class="serif">A space made for us.</h2>
+    <h2 class="final-brand-heading">Made by women for women.</h2>
     <p>Meet, talk, and find community in one focused WLW space.</p>
     <a class="button" href="mailto:hello.sxissor@gmail.com?subject=SXISSOR%20Waitlist">Join the waitlist</a>
   </div>
